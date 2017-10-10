@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,12 +20,15 @@ public class GetNearbyBanksData extends AsyncTask<Object, String, String> {
 
     Context context;
     ArrayList<String> list = new ArrayList<String>();
-    public static final String MY_PREFS_NAME = "settings";
+    public static final String MY_NEAR_Rest = "settings";
 
     public static final String LatlngNearBY = "restlatlng";
 
 
-
+    GetNearbyBanksData (Context context)
+    {
+        this.context = context;
+    }
     @Override
     protected String doInBackground(Object... params) {
         try {
@@ -64,14 +69,23 @@ public class GetNearbyBanksData extends AsyncTask<Object, String, String> {
 
             if (i==0)
             {
-                SharedPreferences.Editor editor = context.getSharedPreferences(LatlngNearBY, MODE_PRIVATE).edit();
-                String lalng= lat + "-" + lng;
-                editor.putString("Latlnfg", lalng);
-                editor.apply();
+
+//                SharedPreferences.Editor editor = context.getSharedPreferences(LatlngNearBY, MODE_PRIVATE).edit();
+//                String lalng= lat + "-" + lng;
+//                editor.putString("Latlnfg", lalng);
+//                editor.apply();
             }
 
 
         }
+
+        SharedPreferences.Editor editor = context.getSharedPreferences(MY_NEAR_Rest, MODE_PRIVATE).edit();
+        Gson gson = new Gson();
+        List<String> textList = new ArrayList<String>();
+        textList.addAll(list);
+        String jsonText = gson.toJson(textList);
+        editor.putString("key", jsonText);
+        editor.commit();
 
 
 

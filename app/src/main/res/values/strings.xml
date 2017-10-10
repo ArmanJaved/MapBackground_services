@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">MapBackground_services</string>
 
-    <string name="channel_name">how are yuou</string>
-    <string name="channel_description">how a asdfaskfjkas askdfjaskre yuou</string>
 
-    channel_description
+    <string name="dot">.</string>
+
 </resources>

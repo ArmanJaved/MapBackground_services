@@ -24,7 +24,10 @@
             </intent-filter>
         </activity>
 
+
+        <activity android:name=".DataRestDisplay"></activity>
         <service android:name=".MyService" android:enabled="true" android:exported="true"></service>
+
     </application>
 
 </manifest>
